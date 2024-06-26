@@ -19,7 +19,7 @@ const Header = () => {
         <p className="text-white text-lg md:text-xl font-poppins text-center mb-6">
           Quality Cars, Affordable Prices
         </p>
-        <button className="bg-slate-500 hover:bg-stone-600 text-white py-3 px-6 rounded-full text-lg md:text-xl font-poppins shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+        <button className="bg-slate-500 hover:bg-stone-600 text-white py-3 px-6 rounded-full font-poppins shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
           Explore Our Cars
         </button>
       </div>

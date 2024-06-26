@@ -4,7 +4,7 @@ import logo from './../../assets/logo.png'
 const Nav = () => {
     const navLinks = <>
      <NavLink to='/'><li>Home</li></NavLink>
-     <NavLink to='/'><li>All Cars</li></NavLink>
+     <NavLink to='/allCars'><li>All Cars</li></NavLink>
      <NavLink to='/'><li>Add Products</li></NavLink>
      <NavLink to='/'><li>My Cart</li></NavLink>
     </>
