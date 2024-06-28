@@ -8,6 +8,9 @@ import {
 import LayOut from './Root/LayOut';
 import Home from './Components/Home/Home';
 import AllCars from './Components/AllCars/AllCars';
+import AddCar from './Components/AddCar/AddCar';
+import MyCart from './Components/MyCart/MyCart';
+import EditCart from './Components/EditCart/EditCart';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +23,20 @@ const router = createBrowserRouter([
       {
         path:'/allCars',
         element:<AllCars/>
+      },
+      {
+        path:'/addCar',
+        element:<AddCar/>
+      },
+      {
+        path:'/myCart',
+        element:<MyCart/>,
+        loader:()=>fetch("http://localhost:5000/carts")
+      },
+      {
+        path:'/editCart/:id',
+        element:<EditCart/>,
+        loader:({params})=>fetch(`http://localhost:5000/carts/${params.id}`)
       }
     ]
   },

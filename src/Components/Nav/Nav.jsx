@@ -4,12 +4,13 @@ import logo from './../../assets/logo.png'
 const Nav = () => {
     const navLinks = <>
      <NavLink to='/'><li>Home</li></NavLink>
-     <NavLink to='/allCars'><li>All Cars</li></NavLink>
-     <NavLink to='/'><li>Add Products</li></NavLink>
-     <NavLink to='/'><li>My Cart</li></NavLink>
+     <NavLink to='/allCars?brand=All'><li>All Cars</li></NavLink>
+     <NavLink to='/addCar'><li>Add Products</li></NavLink>
+     <NavLink to='/myCart'><li>My Cart</li></NavLink>
     </>
     return (
-        <div className="navbar bg-black rounded-t-2xl lg:pr-10 font-poppins">
+      <div className='bg-black'>
+          <div className="navbar container rounded-t-2xl lg:pr-10 font-poppins">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -43,6 +44,7 @@ const Nav = () => {
    <Link><button className="btn bg-sky-400 text-white">Login</button></Link>
   </div>
 </div>
+      </div>
     );
 };
 

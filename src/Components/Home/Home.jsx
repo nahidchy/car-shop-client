@@ -1,6 +1,9 @@
+import Faq from "../Faq/Faq";
 import Header from "../Header/Header";
 import OurBrands from "../OurBrands/OurBrands";
 import PopularCars from "../PopularCars/PopularCars";
+import WhyChose from "../WhyChose/WhyChose";
+import Happy from './../Happy/Happy';
 
 const Home = () => {
     return (
@@ -8,6 +11,10 @@ const Home = () => {
          <Header/>
          <OurBrands/>
          <PopularCars/>
+         <WhyChose/>
+         <Happy/>
+         <Faq/>
+        
         </div>
     );
 };
