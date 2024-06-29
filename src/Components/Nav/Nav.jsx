@@ -1,13 +1,24 @@
 
 import { Link, NavLink } from 'react-router-dom';
 import logo from './../../assets/logo.png'
+import { useContext } from 'react';
+import { ContextUse } from '../AuthContext/AuthContext';
 const Nav = () => {
+  const {user,logOut} = useContext(ContextUse);
     const navLinks = <>
      <NavLink to='/'><li>Home</li></NavLink>
      <NavLink to='/allCars?brand=All'><li>All Cars</li></NavLink>
      <NavLink to='/addCar'><li>Add Products</li></NavLink>
      <NavLink to='/myCart'><li>My Cart</li></NavLink>
     </>
+    const handleLogOut=()=>{
+      logOut()
+      .then(() => {
+        // Sign-out successful.
+      }).catch((error) => {
+        console.log(error)
+      });
+    }
     return (
       <div className='bg-black'>
           <div className="navbar container rounded-t-2xl lg:pr-10 font-poppins">
@@ -41,7 +52,9 @@ const Nav = () => {
     </ul>
   </div>
   <div className="navbar-end">
-   <Link><button className="btn bg-sky-400 text-white">Login</button></Link>
+   {
+    user?  <button onClick={handleLogOut} className="btn bg-sky-400 text-white">Log Out</button> :<Link to='/login'><button className="btn bg-sky-400 text-white">Login</button></Link>
+   }
   </div>
 </div>
       </div>
