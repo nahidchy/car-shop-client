@@ -4,16 +4,25 @@ import { Link } from "react-router-dom";
 
 const PopularCars = () => {
     const [popularCars,setPopularCars] = useState([]);
+    const [loading, setLoading] = useState(true);
     useEffect(()=>{
-          fetch("http://localhost:5000/cars")
+          fetch("https://car-shop-server.onrender.com/cars")
           .then(res=>res.json())
-          .then(data=>setPopularCars(data))
+          .then(data=>{
+            setLoading(false)
+            setPopularCars(data)
+          })
     },[])
     return (
         <div className="py-24 container">
             <h2 className='text-4xl md:text-6xl  font-black-ops text-center text-slate-600 mb-14'>Popular Cars</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-20 font-poppins ">
             {
+              loading ?
+              <div className="h-96 flex justify-center items-center w-full">
+              <span className="loading loading-dots loading-lg"></span>
+          </div>
+          :
                 popularCars.slice(0,6).map(car=><div className="shadow-black shadow-2xl rounded-lg" key={car._id}>
                   <img className="w-full h-[300px] object-cover rounded-lg" src={car.Image} alt="" />
                   <p className="p-3">{car.Short_Description}</p>

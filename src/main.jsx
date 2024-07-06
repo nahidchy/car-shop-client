@@ -43,12 +43,12 @@ const router = createBrowserRouter([
       {
         path:'/myCart',
         element:<PrivateRoute><MyCart/>,</PrivateRoute>,
-        loader:()=>fetch("http://localhost:5000/carts")
+        loader:()=>fetch("https://car-shop-server.onrender.com/carts")
       },
       {
         path:'/editCart/:id',
         element:<EditCart/>,
-        loader:({params})=>fetch(`http://localhost:5000/carts/${params.id}`)
+        loader:({params})=>fetch(`https://car-shop-server.onrender.com/carts/${params.id}`)
       }
     ]
   },

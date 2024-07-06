@@ -13,7 +13,7 @@ const EditCart = () => {
        const short_Description = form.short_Description.value;
        const rating = form.rating.value;
        const editedCar = { name, price, image, short_Description, rating };
-       fetch(`http://localhost:5000/carts/${cars._id}`,{
+       fetch(`https://car-shop-server.onrender.com/carts/${cars._id}`,{
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(editedCar)

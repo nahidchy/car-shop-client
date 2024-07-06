@@ -11,21 +11,27 @@ const AllCars = () => {
   const [brands, setBrands] = useState([]);
   const [filteredCars, setFilteredCars] = useState(cars);
   const [selectedCar, setSelectedCar] = useState(null);
+  const [loading, setLoading] = useState(true);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const activeBrand = searchParams.get("brand");
 
   useEffect(() => {
-    fetch("http://localhost:5000/brands")
+    fetch("https://car-shop-server.onrender.com/brands")
       .then((res) => res.json())
-      .then((data) => setBrands(data))
+      .then((data) =>{
+        
+        setLoading(false)
+        setBrands(data)
+      })
       .catch((error) => console.error("Error fetching brands:", error));
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:5000/cars")
+    fetch("https://car-shop-server.onrender.com/cars",{method:"GET"})
       .then((res) => res.json())
       .then((data) => {
+        setLoading(false)
         setCars(data);
       })
       .catch((error) => console.error("Error fetching cars:", error));
@@ -35,7 +41,8 @@ const AllCars = () => {
     if (activeBrand === "All") {
       setFilteredCars(cars);
     } else {
-      const filtered = cars.filter((car) => car.BrandName === activeBrand);
+      const filtered = cars.filter((car) => car.BrandName == activeBrand);
+      setLoading(false);
       setFilteredCars(filtered);
     }
   }, [activeBrand, cars]);
@@ -52,7 +59,7 @@ const AllCars = () => {
 
   const handleAddToCart = (name, price, image, short_Description, rating) => {
     const newCart = { name, price, image, short_Description, rating };
-    fetch("http://localhost:5000/carts", {
+    fetch("https://car-shop-server.onrender.com/carts", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newCart),
@@ -88,7 +95,10 @@ const AllCars = () => {
               </button>
             </Link>
           </div>
-          {brands.map((brand) => (
+         {
+          loading ? <div>loading</div>
+          :
+          brands.map((brand) => (
             <div  key={brand._id}>
               <Link to={`/allcars?brand=${brand.Brand_Name}`}>
                 <button
@@ -98,11 +108,20 @@ const AllCars = () => {
                 </button>
               </Link>
             </div>
-          ))}
+          ))
+         }
         </div>
         <div className="col-span-3">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-16">
-            {(activeBrand ? filteredCars : cars).map((car) => (
+            {
+            
+            loading ?
+
+            <div className="h-60 flex justify-center items-center w-full">
+            <span className="loading loading-dots loading-lg"></span>
+        </div>
+            :
+            (activeBrand ? filteredCars : cars).map((car) => (
               <div
                 key={car._id}
                 className="bg-white rounded shadow-lg p-4"

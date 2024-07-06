@@ -14,7 +14,7 @@ const AddCar = () => {
           const BrandName = form.BrandName.value;
           const Short_Description = form.Short_Description.value;
           const newCar ={Image,Name,Type,Price,Rating,Category,BrandName,Short_Description};
-          fetch("http://localhost:5000/cars",{
+          fetch("https://car-shop-server.onrender.com/cars",{
             method:'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newCar)
